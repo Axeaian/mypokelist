@@ -2,17 +2,10 @@ const express = require("express");
 const app = express();
 const passport = require("passport");
 var User = require("./models/user");
-const cors = require("cors");
-
-var corsOptions = {
-  origin: [/http:\/\/localhost:.*/, /http[s]*:\/\/.*.herokuapp.com/],
-  credentials: true
-};
 
 require("dotenv").config();
 
 app.use(express.json());
-app.use(cors(corsOptions));
 var expressSession = require("express-session");
 app.use(
   expressSession({
