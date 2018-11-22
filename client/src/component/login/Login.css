@@ -1,0 +1,48 @@
+.container {
+  margin: 140px auto;
+  width: 80%;
+}
+
+.g2 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-column-gap: 50px;
+}
+h2 {
+  margin: 30px 0 15px;
+}
+.item {
+  border: solid black 1px;
+  padding: 20px;
+}
+
+input {
+  display: block;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  width: 90%;
+}
+
+#signin {
+  background: greenyellow;
+}
+
+p {
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+#signup {
+  background: lightskyblue;
+}
+
+.pikachuimg {
+  bottom: 15%;
+  right: 0%;
+  position: absolute;
+}
+
+.pikachuimg img {
+  width: 60%;
+}

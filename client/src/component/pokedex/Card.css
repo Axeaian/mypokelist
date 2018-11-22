@@ -1,0 +1,130 @@
+.listItem {
+  width: 23%;
+  background: #fff;
+  /* padding: 15px; */
+  /* margin-bottom: 10px; */
+  margin: 10px;
+  /* box-shadow: 0px 1px 2px 1px #e1e1e1; */
+  text-align: center;
+}
+
+/* .listItem h3 img {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+.listItem h3:hover img {
+  -webkit-filter: grayscale(0);
+  filter: grayscale(0);
+} */
+.poke {
+  background: rgb(245, 242, 242);
+  border-radius: 20px;
+}
+.poke_index {
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 20px;
+  color: grey;
+}
+
+i {
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.listItem img {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 20px;
+  display: block;
+}
+
+.poke h2 .listItem_name {
+  margin: 0px;
+}
+
+.listItem_type {
+  margin: 0;
+}
+
+#badge {
+  border-radius: 10px;
+  font-size: 11px;
+  display: inline-block;
+  margin: 0 10px 20px;
+  height: 15px;
+  width: 65px;
+}
+
+.poison {
+  background: purple;
+  color: white;
+}
+.grass {
+  background: green;
+  color: white;
+}
+.flying {
+  background: orange;
+  color: white;
+}
+.fire {
+  background: red;
+  color: white;
+}
+.water {
+  background: rgb(74, 118, 214);
+  color: white;
+}
+.bug {
+  background: greenyellow;
+  color: black;
+}
+.normal {
+  background: white;
+  border: black 1px solid;
+  color: black;
+}
+.electric {
+  background: yellow;
+  color: black;
+}
+.ground {
+  background: brown;
+  color: white;
+}
+.fairy {
+  background: pink;
+  color: white;
+}
+.steel {
+  background: steelblue;
+  color: white;
+}
+.ice {
+  background: rgb(147, 212, 243);
+  color: white;
+}
+.ghost {
+  background: black;
+  color: white;
+}
+.psychic {
+  background: slateblue;
+  color: white;
+}
+.fighting {
+  background: rgb(252, 227, 173);
+  color: black;
+}
+.rock {
+  background: grey;
+  color: white;
+}
+.dragon {
+  background: rgb(255, 123, 0);
+  color: white;
+}

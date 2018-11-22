@@ -1,0 +1,73 @@
+.navbar {
+  text-align: center;
+  background: white;
+  position: fixed;
+  top: 0;
+  height: 90px;
+  width: 100%;
+  border-bottom: grey 1px solid;
+  z-index: +1;
+}
+
+.pokeball {
+  position: absolute;
+  left: 80px;
+  top: 20px;
+  width: 10vw;
+  z-index: +10;
+}
+
+.tilt {
+  transition: all 0.5s ease;
+}
+
+.tilt:hover {
+  transform: rotate(-30deg);
+}
+
+/* .navbar span {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  align-self: center;
+} */
+
+ul {
+  list-style-type: none;
+  display: inline-block;
+}
+
+#menu {
+  margin-top: 20px;
+}
+
+#menu li {
+  margin: 0 50px;
+  display: inline;
+}
+#menu li a {
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+#menu li a:hover {
+  color: red;
+}
+
+#login {
+  position: absolute;
+  right: 50px;
+  top: 10px;
+}
+
+#login li {
+  margin: 0 10px;
+}
+
+#login a {
+  color: black;
+  text-decoration: none;
+}
