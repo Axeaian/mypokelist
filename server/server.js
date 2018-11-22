@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const app = require("./app");
 
 mongoose.connect(
-  "mongodb://localhost/pokemon",
+  process.env.MONGODB_URI,
   { useNewUrlParser: true }
 );
 const db = mongoose.connection;
@@ -15,6 +15,6 @@ db.on("error", error => {
   console.error("An error has occured", error);
 });
 
-const server = app.listen(3001, () => {
-  console.log("Listening on port 3001...");
+const server = app.listen(process.env.PORT, () => {
+  console.log(`Listening on port ${process.env.PORT}...`);
 });
