@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const passport = require("passport");
 var User = require("./models/user");
+const path = require("path");
 
 require("dotenv").config();
 
