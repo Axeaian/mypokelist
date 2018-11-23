@@ -4,6 +4,9 @@ const passport = require("passport");
 var User = require("./models/user");
 const path = require("path");
 
+const staticFiles = express.static(path.join(__dirname, "../client/build"));
+app.use(staticFiles);
+
 require("dotenv").config();
 
 app.use(express.json());
