@@ -12,16 +12,21 @@ class Collections extends Component {
     };
   }
 
-  componentDidMount() {
-    if (this.props.isLoggedIn) {
-      setTimeout(async () => {
-        await getFav().then(result => {
-          this.setState({
-            fav: result.pokemon.split(",")
-          });
-          console.log(result.pokemon);
+  async componentDidMount() {
+    await getFav().then(result => {
+      this.setState({
+        fav: result.pokemon.split(",")
+      });
+    });
+  }
+
+  async componentDidUpdate(prevProps) {
+    if (this.props.isLoggedIn !== prevProps.isLoggedIn) {
+      await getFav().then(result => {
+        this.setState({
+          fav: result.pokemon.split(",")
         });
-      }, 500);
+      });
     }
   }
 

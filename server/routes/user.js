@@ -42,7 +42,13 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-router.post("/tests");
+router.get("/check", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.json({ authenticated: true });
+  } else {
+    res.json({ authenticated: false });
+  }
+});
 
 //get fav pokemon
 router.get("/fav", isLoggedIn, async function(req, res) {

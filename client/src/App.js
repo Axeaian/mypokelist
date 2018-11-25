@@ -8,6 +8,7 @@ import Logout from "./component/logout/Logout";
 import Signup from "./component/signup/Signup";
 import Collection from "./component/Collection";
 import ErrorPage from "./ErrorPage";
+import { checkAuth } from "./actions/auth";
 import {
   BrowserRouter as Router,
   Route,
@@ -23,6 +24,16 @@ class App extends Component {
       user: "",
       fav: []
     };
+  }
+  async componentWillMount() {
+    console.log("in willmount");
+    setTimeout(async () => {
+      await checkAuth().then(result => {
+        this.setState({
+          isloggedIn: result.authenticated
+        });
+      });
+    }, 0);
   }
 
   updateLoggedIn = name => {

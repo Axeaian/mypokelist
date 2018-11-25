@@ -1,3 +1,16 @@
+export async function checkAuth() {
+  try {
+    const response = await fetch("/user/check", {
+      method: "get",
+      headers: { "Content-Type": "application/json" }
+    });
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export async function login(username, password) {
   try {
     const response = await fetch("/user/login", {
