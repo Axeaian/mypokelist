@@ -22,9 +22,15 @@ class Signup extends Component {
   handleSignup = e => {
     const { username, password, dob, country, email } = this.state;
     e.preventDefault();
-    signup(username, password, dob, country, email);
-    this.props.history.push("/login");
-    alert("Thanks for signing up! \n Please login to continue");
+    let signupCheck = signup(username, password, dob, country, email);
+    signupCheck.then(output => {
+      if (output.user) {
+        this.props.history.push("/login");
+        alert("Thanks for signing up! \n Please login to continue");
+      } else {
+        alert(output.message);
+      }
+    });
   };
 
   render() {

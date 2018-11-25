@@ -20,7 +20,7 @@ router.post("/signup", handleAsyncError(handler.registerNewUser));
 
 //login user
 router.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
+  passport.authenticate("login", (err, user, info) => {
     if (info) {
       return res.status(401).json({ message: info.message });
     }

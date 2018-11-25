@@ -26,14 +26,11 @@ class App extends Component {
     };
   }
   async componentWillMount() {
-    console.log("in willmount");
-    setTimeout(async () => {
       await checkAuth().then(result => {
         this.setState({
           isloggedIn: result.authenticated
         });
       });
-    }, 0);
   }
 
   updateLoggedIn = name => {

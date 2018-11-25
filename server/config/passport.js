@@ -3,6 +3,7 @@ var LocalStrategy = require("passport-local").Strategy;
 var User = require("../models/user");
 
 passport.use(
+  "login",
   new LocalStrategy(async function(username, password, done) {
     try {
       let user = await User.findOne({ username });
