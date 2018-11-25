@@ -3,6 +3,7 @@ import Card from "./Card";
 import { getPokemons } from "./pokemondata";
 import "./pokedex.css";
 import { getFav, fav } from "../../actions/auth";
+import { setTimeout } from "timers";
 
 let pokemons = getPokemons();
 
@@ -17,12 +18,14 @@ class Pokedex extends Component {
 
   componentDidMount() {
     if (this.props.isLoggedIn) {
-      getFav().then(result => {
-        this.setState({
-          fav: result.split(",")
+      setTimeout(async () => {
+        await getFav().then(result => {
+          this.setState({
+            fav: result.pokemon.split(",")
+          });
+          console.log(result.pokemon);
         });
-        console.log(result);
-      });
+      }, 500);
     }
   }
 

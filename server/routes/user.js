@@ -9,7 +9,7 @@ const User = require("../models/user");
 router.get("/list", isLoggedIn, async (req, res) => {
   try {
     const result = await User.find();
-    res.status(200).json(result);
+    res.status(200).json({ user: result });
   } catch (err) {
     res.status(400).json({ message: `${err.message}` });
   }
@@ -47,8 +47,11 @@ router.post("/tests");
 //get fav pokemon
 router.get("/fav", isLoggedIn, async function(req, res) {
   try {
+    console.log(req.user);
     const result = await User.findById(req.user.id);
-    res.status(200).json(`${req.user.pokemon}`);
+    res.status(200).json({
+      pokemon: `${req.user.pokemon}`
+    });
   } catch (err) {
     res.status(400).json({ message: `${err.message}` });
   }
@@ -81,6 +84,7 @@ router.get("/logout", function(req, res) {
 });
 
 function isLoggedIn(req, res, next) {
+  console.log(req.isAuthenticated());
   if (req.isAuthenticated()) {
     return next();
   }

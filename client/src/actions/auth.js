@@ -32,13 +32,17 @@ export async function signup(username, password, dob, country, email) {
   return data;
 }
 
-export async function getFav(pokemon) {
-  const response = await fetch("/user/fav", {
-    method: "get",
-    headers: { "Content-Type": "application/json" }
-  });
-  const data = await response.json();
-  return data;
+export async function getFav() {
+  try {
+    const response = await fetch("/user/fav", {
+      method: "get",
+      headers: { "Content-Type": "application/json" }
+    });
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export async function fav(pokemon) {

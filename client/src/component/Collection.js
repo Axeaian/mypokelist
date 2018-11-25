@@ -14,11 +14,14 @@ class Collections extends Component {
 
   componentDidMount() {
     if (this.props.isLoggedIn) {
-      getFav().then(result => {
-        this.setState({
-          fav: result.split(",")
+      setTimeout(async () => {
+        await getFav().then(result => {
+          this.setState({
+            fav: result.pokemon.split(",")
+          });
+          console.log(result.pokemon);
         });
-      });
+      }, 500);
     }
   }
 
