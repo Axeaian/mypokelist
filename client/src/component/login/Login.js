@@ -18,12 +18,13 @@ class Login extends Component {
 
   handleLogin = e => {
     e.preventDefault();
-    let user = login(this.state.username, this.state.password);
-    this.props.updateLogStatus(this.state.username);
-    this.setState({
-      username: "",
-      password: "",
-      user: user
+    let logincheck = login(this.state.username, this.state.password);
+    logincheck.then(output => {
+      if (output.user) {
+        this.props.updateLogStatus(this.state.username);
+      } else {
+        alert(output.message);
+      }
     });
   };
 

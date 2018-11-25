@@ -19,14 +19,28 @@ router.get("/list", isLoggedIn, async (req, res) => {
 router.post("/signup", handleAsyncError(handler.registerNewUser));
 
 //login user
-router.post(
-  "/login",
-  passport.authenticate("local", { failureRedirect: "/login" }),
-  function(req, res) {
-    // failureFlash: true;
-    res.status(200).json(`Welcome ${req.user.username}`);
-  }
-);
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (info) {
+      return res.status(401).json({ message: info.message });
+    }
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.redirect("/login");
+    }
+    req.login(user, err => {
+      if (err) {
+        return next(err);
+      }
+      return res.status(200).json({
+        user: `${req.user.username}`,
+        message: `You are logged in!`
+      });
+    });
+  })(req, res, next);
+});
 
 router.post("/tests");
 

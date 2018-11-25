@@ -1,8 +1,12 @@
 const express = require("express");
-const app = express();
 const passport = require("passport");
-var User = require("./models/user");
 const path = require("path");
+const uuid = require("uuid/v4");
+const session = require("express-session");
+const FileStore = require("session-file-store")(session);
+
+const app = express();
+var User = require("./models/user");
 
 const staticFiles = express.static(path.join(__dirname, "../client/build"));
 app.use(staticFiles);
@@ -10,22 +14,23 @@ app.use(staticFiles);
 require("dotenv").config();
 
 app.use(express.json());
-var expressSession = require("express-session");
 app.use(
-  expressSession({
+  session({
+    genid: req => uuid(),
+    store: new FileStore(),
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true
   })
 );
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
   done(null, user._id);
 });
 
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser((id, done) => {
   User.findById(id, function(err, user) {
     done(err, user);
   });
