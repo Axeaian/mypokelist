@@ -39,6 +39,19 @@ passport.deserializeUser((id, done) => {
 //routes
 const user = require("./routes/user");
 app.use("/user", user);
+app.get("/verify", async function(req, res) {
+  console.log(req.query.hash);
+  if (req.query.hash) {
+    const user = await User.findOne({ verifcode: req.query.hash });
+    user.authenticated = true;
+    user.save();
+    user
+      ? res.status(200).json({ message: `Verified` })
+      : res.status(404).json({ message: `Invalid hash` });
+  } else {
+    res.status(200).json({ message: `Invalid query params` });
+  }
+});
 
 //To resolve React-Router client side routing. Put all API calls above this route!
 app.get("*", function(req, res) {

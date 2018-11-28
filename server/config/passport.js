@@ -19,6 +19,12 @@ passport.use(
             "Password invalid!\nPlease check login credentials and try again."
         });
       }
+      if (!user.authenticated) {
+        return done(null, false, {
+          message:
+            "User is not validated!\nPlease check your email to validate and try again."
+        });
+      }
       return done(null, user);
     } catch (err) {
       done(err);

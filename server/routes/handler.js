@@ -1,4 +1,6 @@
 const User = require("../models/user");
+const crypto = require("crypto");
+const { mailer } = require("../config/sendgrid");
 
 async function registerNewUser(req, res) {
   let existUser = await User.findOne({ username: req.body.username });
@@ -9,9 +11,12 @@ async function registerNewUser(req, res) {
     user.dob = req.body.dob;
     user.country = req.body.country;
     user.email = req.body.email;
-    user.setPassword(req.body.password);
+    user.setPassword(req.body.username, req.body.password);
+    user.authenticated = false;
+    user.verifcode = crypto.randomBytes(16).toString("Hex");
 
     await user.save();
+    mailer(user.username, user.email, user.verifcode);
     return res.status(201).json({
       user: `${user.username}`,
       message: `Created user with username: ${user.username}`

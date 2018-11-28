@@ -18,12 +18,15 @@ const userSchema = mongoose.Schema({
   },
   passwordHash: String,
   passwordSalt: String,
+  authenticated: Boolean,
+  verifcode: String,
   pokemon: Array
 });
 
-userSchema.methods.setPassword = function(password) {
+userSchema.methods.setPassword = function(username, password) {
   this.passwordSalt = generateSalt();
   this.passwordHash = hashPassword(password, this.passwordSalt);
+  this.verifcode = hashPassword(username, this.passwordSalt);
 };
 function generateSalt() {
   let salt = crypto.randomBytes(16).toString("Hex");
